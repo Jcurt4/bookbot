@@ -2,8 +2,8 @@ def main():
     book_location  = "books/frankenstein.txt"
     text = get_book_text(book_location)
     num_words = get_num_words(text)
-    print(f"{num_words} words found in the document")
     character_count = num_characters(text)
+    print(character_count)
 
 
 def get_book_text(book_location):
@@ -22,7 +22,7 @@ def num_characters(text):
             count[letter] += 1
         elif letter not in count:
             count[letter] = 1
-    print(count)
+    return count
 
 
 
