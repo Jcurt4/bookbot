@@ -1,10 +1,13 @@
+import string
+
 def main():
     book_location  = "books/frankenstein.txt"
     text = get_book_text(book_location)
     num_words = get_num_words(text)
-    character_count = num_characters(text)
-    print(character_count)
-
+    char_count = num_characters(text)
+    char_list = list_of_dictionaries(char_count)
+    fixed_char_list = remove_spec_char(char_list)
+    print(fixed_char_list)
 
 def get_book_text(book_location):
     with open(book_location) as f:  
@@ -24,8 +27,27 @@ def num_characters(text):
             count[letter] = 1
     return count
 
+def list_of_dictionaries(char_count):
+    list_of_char = []
+    for char, count in char_count.items():
+        holder_dict = {char: count}
+        list_of_char.append(holder_dict)
+    return list_of_char
+
+def remove_spec_char(char_list):
+    letter_list = []
+    for d in char_list:
+        filtered_dict = {}
+        for key, value in d.items():
+            if is_letter(key):
+                filtered_dict[key] = value
+        letter_list.append(filtered_dict)
+    filtered_list = [d for d in letter_list if d]
+    return filtered_list
 
 
+def is_letter(character):
+    return character in string.ascii_letters    
 
 
 
