@@ -10,7 +10,10 @@ def main():
     sortable_list = transform_list(fixed_char_list)
     sortable_list.sort(reverse=True, key=sort_on)
 
-    print(sortable_list)
+    print(f"--- Being report of {book_location} ---")
+    print(f"{num_words} words found in the document")
+    print_sorted(sortable_list)
+    print("--- End report ---")
 
 def get_book_text(book_location):
     with open(book_location) as f:  
@@ -62,6 +65,8 @@ def transform_list(fixed_char_list):
             transfromed_list.append(new_dict)
     return transfromed_list
 
-
+def print_sorted(sortable_list):
+    for n in sortable_list:
+        print(f"The '{n['letter']}' character was found {n['num']} times")
 
 main()
