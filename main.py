@@ -1,11 +1,28 @@
 def main():
-    print("file reading started")
+    book_location  = "books/frankenstein.txt"
+    text = get_book_text(book_location)
+    num_words = get_num_words(text)
+    print(f"{num_words} words found in the document")
+    character_count = num_characters(text)
 
-    with open("books/frankenstein.txt") as f:
-        file_contents = f.read()
+
+def get_book_text(book_location):
+    with open(book_location) as f:  
+        return f.read()
     
-    print("file reading finished")
-    print(file_contents)
+def get_num_words(text):
+    words_count = text.split()
+    return len(words_count)
+    
+def num_characters(text):
+    count = {}
+    corrected_text = text.lower().strip()
+    for letter in corrected_text:
+        if letter in count:
+            count[letter] += 1
+        elif letter not in count:
+            count[letter] = 1
+    print(count)
 
 
 
