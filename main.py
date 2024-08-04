@@ -7,7 +7,10 @@ def main():
     char_count = num_characters(text)
     char_list = list_of_dictionaries(char_count)
     fixed_char_list = remove_spec_char(char_list)
-    print(fixed_char_list)
+    sortable_list = transform_list(fixed_char_list)
+    sortable_list.sort(reverse=True, key=sort_on)
+
+    print(sortable_list)
 
 def get_book_text(book_location):
     with open(book_location) as f:  
@@ -45,10 +48,19 @@ def remove_spec_char(char_list):
     filtered_list = [d for d in letter_list if d]
     return filtered_list
 
-
 def is_letter(character):
     return character in string.ascii_letters    
 
+def sort_on(sortable_list):
+    return sortable_list["num"]
+
+def transform_list(fixed_char_list):
+    transfromed_list = []
+    for d in fixed_char_list:
+        for key, value in d.items():
+            new_dict = {"letter": key, "num": value}
+            transfromed_list.append(new_dict)
+    return transfromed_list
 
 
 
